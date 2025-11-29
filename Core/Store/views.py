@@ -1,24 +1,66 @@
-from django.shortcuts import render
 from .models import Product,Category 
-# Create your views here.
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
+from .models import Product, Category
+from .serializer import ProductSerializer, CategorySerializer
+from rest_framework.generics import ListAPIView
 
 
-def Products(req):
-    Products = Product.objects.all()
-    return render(req,"index.html",{"products":Products})
-def category(req):
-    return render(req,"category.html")
-def AllProducts(req):
-    Products = Product.objects.all()
-    category = Category.objects.all()
-    return render(req,"allproducts.html",{"products":Products,"category":category})
 
-def About(req):
-    return render(req,"about.html")
+class HomeView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "index.html"
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response({
+            "products": products,             
+            "products_json": serializer.data   
+        })
 
-def Contact(req):
-    return render(req,"contact.html")
-def Cart(req):
-    return render(req,"cart.html")
-def LoginAndSignin(req):
-    return render(req,"login.html")
+class AllProductsView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "allproducts.html"
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response({
+            "products": products,             
+            "products_json": serializer.data   
+        })
+
+class CategoryView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "category.html"
+    def get(self, request):
+        category = Category.objects.all()
+        serializer = CategorySerializer(category, many=True)
+        return Response({
+            "category": category,             
+            "products_json": serializer.data   
+        })
+
+class AboutView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "about.html"
+    def get(self, request):
+        return Response()
+class ContactView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "contact.html"
+    def get(self, request):
+        return Response()
+    
+class CartView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "cart.html"
+    def get(self, request):
+        return Response()
+    
+class LoginView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "login.html"
+    def get(self, request):
+        return Response()
