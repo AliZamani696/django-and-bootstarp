@@ -9,7 +9,7 @@ from .models import Category,Product
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('CategoryName', 'CategoryParent', 'has_children')
     list_filter = ('CategoryParent', )
-    search_fields = ('name',)
+    search_fields = ('CategoryName',)
     
 @admin.register(Product)
 class CategoryAdmin(admin.ModelAdmin):

@@ -10,15 +10,10 @@ class Product(models.Model):
     ProductDescription = models.TextField(max_length=150)
     ProductQuantity = models.IntegerField(default=0)
     ProductPrice = models.DecimalField(max_digits=10,decimal_places=3)
+    ProductImage = models.ImageField(upload_to="uploads/images/",null=True,)
     
     def __str__(self):
         return self.ProductName
-
-
-
-
-
-
 
 
 class Category(models.Model):
@@ -36,17 +31,17 @@ class Category(models.Model):
         unique_together = ('CategoryParent',)
         
     def __str__(self):
-        full_path = [self.name]
-        k = self.parent
+        full_path = [self.CategoryName]
+        k = self.CategoryParent
         while k is not None:
-            full_path.append(k.name)
-            k = k.parent
+            full_path.append(k.CategoryName)
+            k = k.CategoryParent
         return ' -> '.join(full_path[::-1])
     
     @property
     def is_root(self):
-        """Check if category is root (no parent)"""
-        return self.parent is None
+        """Check if category is root (no CategoryParent)"""
+        return self.CategoryParent is None
     
     @property
     def has_children(self):
