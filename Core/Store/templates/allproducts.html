@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {%load static%}
+
     <style>
         :root {
             --primary: #4361ee;
@@ -251,7 +253,7 @@
             </div>
             
             <div class="mt-3">
-                <span class="category-tag active" style="cursor: pointer; color: rgb(0, 0, 0);size: 2rem;">All Products</span>
+                <span class="category-tag active a" value="allproducts" style="cursor: pointer; color: rgb(0, 0, 0);size: 2rem;">All Products</span>
                 {% for cate in category%}
                 <a value="{{ cate.CategoryName }}" class="category-tag a" style="cursor: pointer; color: rgb(0, 0, 0);size: 2rem;">{{ cate.CategoryName }}</a>
               
@@ -370,10 +372,6 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.querySelectorAll(".a").forEach(p=>{
-        console.log(p.textContent)
-      })
-    </script>
+    <script src="{% static 'js/allproducts.js' %}"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ def category(req):
 def AllProducts(req):
     Products = Product.objects.all()
     category = Category.objects.all()
-    return render(req,"allproducts.html",{"category":category})
+    return render(req,"allproducts.html",{"products":Products,"category":category})
 
 def About(req):
     return render(req,"about.html")
