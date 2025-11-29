@@ -251,17 +251,17 @@
             </div>
             
             <div class="mt-3">
-                <span class="category-tag active">All Products</span>
-                <span class="category-tag">Smartphones</span>
-                <span class="category-tag">Laptops</span>
-                <span class="category-tag">Audio</span>
-                <span class="category-tag">Cameras</span>
-                <span class="category-tag">Accessories</span>
-                <span class="category-tag">Wearables</span>
-                <span class="category-tag">Gaming</span>
+                <span class="category-tag active" style="cursor: pointer; color: rgb(0, 0, 0);size: 2rem;">All Products</span>
+                {% for cate in category%}
+                <a value="{{ cate.CategoryName }}" class="category-tag a" style="cursor: pointer; color: rgb(0, 0, 0);size: 2rem;">{{ cate.CategoryName }}</a>
+              
+                {% endfor %}
             </div>
         </div>
     </section>
+    
+     
+
     <!-- Main Content -->
     <div class="container">
         <div class="row">
@@ -299,17 +299,18 @@
                 <!-- Product Grid -->
                 <div class="row">
                     <!-- Product 1 -->
+                     {% for product in products %}
                     <div class="col-md-6 col-xl-4">
                         <div class="card product-card">
                             <span class="badge bg-danger product-badge">-20%</span>
                             <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Smartphone">
+                            <img src="{{ product.ProductImage.url}}" class="card-img-top product-img" alt="Smartphone">
                             <div class="card-body d-flex flex-column">
                                 <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Smartphones</span>
+                                    <span class="me-3"><i class="fas fa-tag me-1"></i></span>
                                     <span><i class="fas fa-shopping-cart me-1"></i> 124 sold</span>
                                 </div>
-                                <h5 class="card-title">Premium Smartphone X1</h5>
+                                <h5 class="card-title">{{ product.ProductName }}</h5>
                                 <div class="rating mb-2">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -334,186 +335,9 @@
                             </button>
                         </div>
                     </div>
-                    
+                    {% endfor %}
                     <!-- Product 2 -->
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card product-card">
-                            <span class="badge bg-success product-badge">New</span>
-                            <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Laptop">
-                            <div class="card-body d-flex flex-column">
-                                <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Laptops</span>
-                                    <span><i class="fas fa-shopping-cart me-1"></i> 87 sold</span>
-                                </div>
-                                <h5 class="card-title">UltraSlim Laptop Pro</h5>
-                                <div class="rating mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <span class="text-muted ms-1">(64)</span>
-                                </div>
-                                <p class="card-text flex-grow-1">Powerful performance in a lightweight design.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$1,299.99</span>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-cart-plus"></i> Add
-                                    </a>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-primary quick-view-btn">
-                                <i class="fas fa-eye me-1"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
                     
-                    <!-- Product 3 -->
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card product-card">
-                            <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Headphones">
-                            <div class="card-body d-flex flex-column">
-                                <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Audio</span>
-                                    <span><i class="fas fa-shopping-cart me-1"></i> 210 sold</span>
-                                </div>
-                                <h5 class="card-title">Wireless Noise-Canceling Headphones</h5>
-                                <div class="rating mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="text-muted ms-1">(210)</span>
-                                </div>
-                                <p class="card-text flex-grow-1">Premium sound quality with active noise cancellation.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$199.99</span>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-cart-plus"></i> Add
-                                    </a>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-primary quick-view-btn">
-                                <i class="fas fa-eye me-1"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 4 -->
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card product-card">
-                            <span class="badge bg-warning product-badge">Popular</span>
-                            <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Camera">
-                            <div class="card-body d-flex flex-column">
-                                <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Cameras</span>
-                                    <span><i class="fas fa-shopping-cart me-1"></i> 89 sold</span>
-                                </div>
-                                <h5 class="card-title">4K Action Camera</h5>
-                                <div class="rating mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                    <span class="text-muted ms-1">(89)</span>
-                                </div>
-                                <p class="card-text flex-grow-1">Capture your adventures in stunning 4K resolution.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$349.99</span>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-cart-plus"></i> Add
-                                    </a>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-primary quick-view-btn">
-                                <i class="fas fa-eye me-1"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 5 -->
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card product-card">
-                            <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Smart Watch">
-                            <div class="card-body d-flex flex-column">
-                                <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Wearables</span>
-                                    <span><i class="fas fa-shopping-cart me-1"></i> 156 sold</span>
-                                </div>
-                                <h5 class="card-title">Smart Fitness Watch</h5>
-                                <div class="rating mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <span class="text-muted ms-1">(156)</span>
-                                </div>
-                                <p class="card-text flex-grow-1">Track your health and stay connected on the go.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$249.99</span>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-cart-plus"></i> Add
-                                    </a>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-primary quick-view-btn">
-                                <i class="fas fa-eye me-1"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 6 -->
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card product-card">
-                            <span class="badge bg-danger product-badge">-15%</span>
-                            <span class="badge bg-success stock-badge">In Stock</span>
-                            <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top product-img" alt="Speaker">
-                            <div class="card-body d-flex flex-column">
-                                <div class="product-meta mb-2">
-                                    <span class="me-3"><i class="fas fa-tag me-1"></i> Audio</span>
-                                    <span><i class="fas fa-shopping-cart me-1"></i> 203 sold</span>
-                                </div>
-                                <h5 class="card-title">Bluetooth Portable Speaker</h5>
-                                <div class="rating mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="text-muted ms-1">(203)</span>
-                                </div>
-                                <p class="card-text flex-grow-1">360° sound with 20-hour battery life.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$79.99</span>
-                                        <span class="old-price ms-2">$94.99</span>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-cart-plus"></i> Add
-                                    </a>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-primary quick-view-btn">
-                                <i class="fas fa-eye me-1"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 
                 <!-- Pagination -->
                 <nav aria-label="Product pagination" class="mt-5">
@@ -546,5 +370,10 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll(".a").forEach(p=>{
+        console.log(p.textContent)
+      })
+    </script>
 </body>
 </html>

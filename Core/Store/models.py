@@ -13,6 +13,7 @@ class Product(models.Model):
     ProductImage = models.ImageField(upload_to="uploads/images/",null=True,)
     ProductSale = models.BooleanField(default=False)
     ProductNew = models.BooleanField(default=False)
+    ProductStar = models.IntegerField(default=1)
     
     def __str__(self):
         return self.ProductName
