@@ -11,6 +11,8 @@ class Product(models.Model):
     ProductQuantity = models.IntegerField(default=0)
     ProductPrice = models.DecimalField(max_digits=10,decimal_places=3)
     ProductImage = models.ImageField(upload_to="uploads/images/",null=True,)
+    ProductSale = models.BooleanField(default=False)
+    ProductNew = models.BooleanField(default=False)
     
     def __str__(self):
         return self.ProductName
