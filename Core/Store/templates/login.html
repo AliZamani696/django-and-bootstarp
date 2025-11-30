@@ -283,7 +283,7 @@
                                     <span>or continue with email</span>
                                 </div>
                                 
-                                <form id="loginForm" action="accounts/api/login/" method="post">
+                                <form id="loginForm" method="post">
                                     <div class="mb-3">
                                         <label for="loginEmail" class="form-label">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
@@ -334,8 +334,10 @@
                                     <span>or sign up with email</span>
                                 </div>
                                 
-                                <form id="signupForm">
-                                    <div class="row">
+                                <form id="signupForm" method="POST" >
+                                    {% csrf_token %}
+
+                                    <!-- <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="firstName" class="form-label">First Name</label>
@@ -348,24 +350,24 @@
                                                 <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
                                     <div class="mb-3">
                                         <label for="signupEmail" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="signupEmail" placeholder="name@example.com" required>
+                                        <input type="email" name="email" class="form-control" id="signupEmail" placeholder="name@example.com" required>
                                     </div>
                                     
                                     <div class="mb-3 password-toggle">
-                                        <label for="signupPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="signupPassword" placeholder="Create a strong password" required>
+                                        <label for="password1" class="form-label">Password</label>
+                                        <input type="password" name="password1" class="form-control" id="signupPassword" placeholder="Create a strong password" required>
                                         <button type="button" class="toggle-password">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     
                                     <div class="mb-3 password-toggle">
-                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                                        <label for="password2" class="form-label">Confirm Password</label>
+                                        <input type="password" name="password2" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
                                         <button type="button" class="toggle-password">
                                             <i class="fas fa-eye"></i>
                                         </button>
