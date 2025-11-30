@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import CartItem, Cart
 from Store.models import Product
-
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
 
@@ -28,4 +28,18 @@ class AddToCartAPIView(APIView):
             cart_item.quantity += qty
         cart_item.save()
 
-        return Response({"message": "Added to cart"})
+
+        return Response({
+            "message": "Added to cart"
+            })
+
+
+class CartView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "cart.html"
+    def get(self,request):
+        cartitems = CartItem.objects.all()
+        print(cartitems)
+        return Response({
+            "cartitems":cartitems,
+        })

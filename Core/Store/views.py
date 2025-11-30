@@ -1,4 +1,4 @@
-from .models import Product,Category 
+from .models import Product,Category
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -16,8 +16,8 @@ class HomeView(APIView):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
         return Response({
-            "products": products,             
-            "products_json": serializer.data   
+            "products": products,
+            "products_json": serializer.data
         })
 
 class AllProductsView(APIView):
@@ -30,8 +30,8 @@ class AllProductsView(APIView):
         serializer = CategorySerializer(category, many=True)
         return Response({
             "category": category,
-            "products": products,             
-            "products_json": serializer.data   
+            "products": products,
+            "products_json": serializer.data
         })
 
 class CategoryView(APIView):
@@ -41,8 +41,8 @@ class CategoryView(APIView):
         category = Category.objects.all()
         serializer = CategorySerializer(category, many=True)
         return Response({
-            "category": category,             
-            "category_json": serializer.data   
+            "category": category,
+            "category_json": serializer.data
         })
 
 class AboutView(APIView):
@@ -55,10 +55,4 @@ class ContactView(APIView):
     template_name = "contact.html"
     def get(self, request):
         return Response()
-    
-class CartView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = "cart.html"
-    def get(self, request):
-        return Response()
-    
+
