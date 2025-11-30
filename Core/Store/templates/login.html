@@ -284,14 +284,16 @@
                                 </div>
                                 
                                 <form id="loginForm" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="login">
                                     <div class="mb-3">
                                         <label for="loginEmail" class="form-label">Email Address</label>
-                                        <input type="email" name="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
+                                        <input type="email" name="email" class="form-control" id="loginEmail" placeholder="name@example.com" >
                                     </div>
                                     
                                     <div class="mb-3 password-toggle">
                                         <label for="loginPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                                        <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password" >
                                         <button type="button" class="toggle-password">
                                             <i class="fas fa-eye"></i>
                                         </button>
