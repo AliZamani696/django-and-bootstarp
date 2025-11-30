@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'Accounts',
     'rest_framework_simplejwt',
     'corsheaders',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'Cart'
 ]
 
 MIDDLEWARE = [

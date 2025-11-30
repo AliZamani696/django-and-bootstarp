@@ -8,6 +8,11 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
 
+
+#TODO: 
+# fix login bug[]
+
+
 class RegisterView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = "login.html"
@@ -46,6 +51,6 @@ class RegisterView(APIView):
                     "user": {
                     "id": user.id,
                     "email": user.email.split("@")[0]
-                    }},redirect("/")
+                    }}
                  
                 )
