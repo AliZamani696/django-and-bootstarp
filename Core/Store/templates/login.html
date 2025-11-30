@@ -333,25 +333,23 @@
                                 <div class="divider">
                                     <span>or sign up with email</span>
                                 </div>
-                                
+                                    {% if errors %}
+                                        <div style="color:red;">
+                                            <h3>Errors:</h3>
+                                            <ul>
+                                                {% for field, messages in errors.items %}
+                                                    {% for msg in messages %}
+                                                        <li class="text-warning"><strong>{{ field }}:</strong> {{ msg }}</li>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+
+                             
                                 <form id="signupForm" method="POST" >
                                     {% csrf_token %}
-
-                                    <!-- <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="firstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" placeholder="John" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="lastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    
+                                    <input type="hidden" name="action" value="register">
                                     <div class="mb-3">
                                         <label for="signupEmail" class="form-label">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="signupEmail" placeholder="name@example.com" required>
@@ -364,7 +362,6 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
-                                    
                                     <div class="mb-3 password-toggle">
                                         <label for="password2" class="form-label">Confirm Password</label>
                                         <input type="password" name="password2" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
@@ -372,7 +369,6 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
-                                    
                                     <div class="mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="agreeTerms" required>
