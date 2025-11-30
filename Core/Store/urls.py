@@ -8,7 +8,7 @@ from .views import (
     AboutView,
     ContactView,
     CartView,
-    LoginView
+   
 )
 
 
@@ -22,5 +22,4 @@ urlpatterns = [
     path("api/about/", AboutView.as_view()),
     path("api/contact/", ContactView.as_view()),
     path("api/cart/", CartView.as_view()),
-    path("api/login/", LoginView.as_view()),
 ]

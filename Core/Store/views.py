@@ -26,7 +26,10 @@ class AllProductsView(APIView):
     def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
+        category = Category.objects.all()
+        serializer = CategorySerializer(category, many=True)
         return Response({
+            "category": category,
             "products": products,             
             "products_json": serializer.data   
         })
@@ -39,7 +42,7 @@ class CategoryView(APIView):
         serializer = CategorySerializer(category, many=True)
         return Response({
             "category": category,             
-            "products_json": serializer.data   
+            "category_json": serializer.data   
         })
 
 class AboutView(APIView):
@@ -59,8 +62,3 @@ class CartView(APIView):
     def get(self, request):
         return Response()
     
-class LoginView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = "login.html"
-    def get(self, request):
-        return Response()
