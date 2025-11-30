@@ -9,14 +9,14 @@ from rest_framework.authtoken.models import Token
 
 
 
-#TODO: 
+#TODO:
 # fix login bug[]
 
 
 class RegisterView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = "login.html"
-    def get(self, request):   
+    def get(self, request):
         return Response({})
     def post(self, request):
         action = request.data.get("action")
@@ -49,8 +49,8 @@ class RegisterView(APIView):
                     "message": "Login successful",
                     "token": token.key,
                     "user": {
-                    "id": user.id,
+                    # "id": user.id,
                     "email": user.email.split("@")[0]
                     }}
-                 
+
                 )

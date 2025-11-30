@@ -143,19 +143,20 @@
                 <!-- Product 1 -->
                  {% for product in products %}
                 <div class="col-md-6 col-lg-3">
-                    <div class="card product-card h-100">
+                    <div class="card product-card h-100" >
                         <span class="badge bg-danger category-badge">Sale</span>
                         <img src="{{ product.ProductImage.url }}" class="card-img-top product-img" alt="Product 1">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ product.ProductName }}</h5>
+                        <div class="card-body d-flex flex-column " >
+                            <h5 class="card-title" >{{ product.ProductName }}</h5>
                             <p class="card-text flex-grow-1">{{ product.ProductDescription }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <!-- <span class="old-price ms-2">$89.99</span> -->
                                     <span class="price ">${{product.ProductPrice}}</span>
                                 </div>
-                                <a href="/Cart/add/" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-cart-plus"></i> Add
+                                <a  class="btn btn-primary btn-sm  Add">
+                            <p class="vl" value="{{ product.id }}" style="display: none;">{{product.id}}</p>
+                                    <i  class="fas fa-cart-plus"></i> Add
                                 </a>
                             </div>
                         </div>
@@ -295,12 +296,64 @@
             </div>
         </div>
     </section>
-         {% include "layout/footer.html" %}
 
-    <!-- Footer -->
 
+         <!-- Footer -->
+{% include "layout/footer.html" %}
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // document.querySelectorAll(".Add").forEach(btn=>{
+        //     btn.addEventListener("click",()=>{
+        //         const productId = btn.parentNode.querySelector(".vl").textContent;
+        //         let res =  fetch("http://127.0.0.1:8000/Cart/add/",{
+        //             method :"POST",
+        //             body:{"data":productId}
+        //         })
+
+        //         })
+
+        //     })
+        function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = cookie.substring(name.length + 1);
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+        document.querySelectorAll(".Add").forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const product_id = btn.parentNode.querySelector(".vl").textContent;
+
+        let res = await fetch("http://127.0.0.1:8000/Cart/add/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")  // If using Django session
+            },
+            body: JSON.stringify({
+                product_id: product_id,
+                quantity: 1
+            })
+        });
+
+        let data = await res.json();
+        console.log(data,product_id);
+    });
+});
+
+
+
+
+    </script>
 </body>
 </html>
