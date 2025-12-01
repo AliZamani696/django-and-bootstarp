@@ -9,16 +9,6 @@ from rest_framework.generics import ListAPIView
 
 
 
-class HomeView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = "index.html"
-    def get(self, request):
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response({
-            "products": products,
-            "products_json": serializer.data
-        })
 
 class AllProductsView(APIView):
     renderer_classes = [TemplateHTMLRenderer]

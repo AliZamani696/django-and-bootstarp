@@ -1,8 +1,8 @@
 
-from . import views
+
 from django.urls import path
 from .views import (
-    HomeView,
+    # HomeView,
     CategoryView,
     AllProductsView,
     AboutView,
@@ -12,7 +12,7 @@ from .views import (
 
 
 urlpatterns = [
-    path("api/products/", HomeView.as_view()),
+    # path("api/products/", HomeView.as_view()),
     path("api/categories/", CategoryView.as_view()),
     path("api/allproducts/",AllProductsView.as_view()),
     path("api/about/", AboutView.as_view()),
