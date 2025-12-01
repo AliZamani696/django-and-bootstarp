@@ -19,3 +19,32 @@ class Home(APIView):
             "products": products,
             "products_json": serializer.data
         })
+# views/error_views.py
+from rest_framework.permissions import AllowAny
+
+class NotFoundView(APIView):
+    permission_classes = [AllowAny]
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "404.html"
+
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {
+                'error': 'Endpoint not found',
+                'message': 'The requested URL was not found on this server.',
+                'status_code': status.HTTP_404_NOT_FOUND
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    def post(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
