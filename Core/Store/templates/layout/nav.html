@@ -29,6 +29,10 @@
                         <i class="fas fa-shopping-cart"></i>
                     </a>
                     <a href="/accounts/api/register/" class="btn btn-primary">Sign In</a>
+                      <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                      <button type="submit" class="btn btn-danger">Log Out</button>
+                    </form>
                 </div>
             </div>
         </div>

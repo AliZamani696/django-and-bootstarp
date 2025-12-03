@@ -6,10 +6,10 @@ from rest_framework import status
 from .models import CartItem, Cart
 from Store.models import Product
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-class AddToCartAPIView(APIView):
+class AddToCartAPIView(LoginRequiredMixin,APIView):
     def post(self,request):
         user = request.user
         product_id = request.data.get("product_id")
@@ -34,7 +34,7 @@ class AddToCartAPIView(APIView):
             })
 
 
-class CartView(APIView):
+class CartView(LoginRequiredMixin,APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = "cart.html"
     def get(self,request):

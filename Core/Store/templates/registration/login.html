@@ -17,7 +17,7 @@
             --dark: #212529;
             --success: #4cc9f0;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f7fb;
@@ -26,16 +26,16 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .navbar {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             color: var(--primary) !important;
         }
-        
+
         .auth-container {
             flex: 1;
             display: flex;
@@ -43,7 +43,7 @@
             justify-content: center;
             padding: 40px 0;
         }
-        
+
         .auth-card {
             background: white;
             border-radius: 15px;
@@ -52,7 +52,7 @@
             width: 100%;
             max-width: 1000px;
         }
-        
+
         .auth-image {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
@@ -62,26 +62,26 @@
             color: white;
             height: 100%;
         }
-        
+
         .auth-image-content {
             text-align: center;
         }
-        
+
         .auth-image i {
             font-size: 5rem;
             margin-bottom: 20px;
         }
-        
+
         .auth-form {
             padding: 40px;
         }
-        
+
         .auth-tabs {
             display: flex;
             margin-bottom: 30px;
             border-bottom: 1px solid #eaeaea;
         }
-        
+
         .auth-tab {
             flex: 1;
             text-align: center;
@@ -91,37 +91,37 @@
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
         }
-        
+
         .auth-tab.active {
             color: var(--primary);
             border-bottom: 3px solid var(--primary);
         }
-        
+
         .auth-content {
             display: none;
         }
-        
+
         .auth-content.active {
             display: block;
         }
-        
+
         .form-control {
             padding: 12px 15px;
             border: 1px solid #e3e6f0;
             border-radius: 8px;
             margin-bottom: 20px;
         }
-        
+
         .form-control:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
         }
-        
+
         .form-label {
             font-weight: 600;
             margin-bottom: 8px;
         }
-        
+
         .btn-primary {
             background-color: var(--primary);
             border-color: var(--primary);
@@ -129,37 +129,37 @@
             font-weight: 600;
             width: 100%;
         }
-        
+
         .btn-primary:hover {
             background-color: var(--secondary);
             border-color: var(--secondary);
         }
-        
+
         .divider {
             display: flex;
             align-items: center;
             margin: 25px 0;
         }
-        
+
         .divider::before,
         .divider::after {
             content: "";
             flex: 1;
             border-bottom: 1px solid #eaeaea;
         }
-        
+
         .divider span {
             padding: 0 15px;
             color: #6c757d;
             font-size: 0.9rem;
         }
-        
+
         .social-login {
             display: flex;
             gap: 15px;
             margin-bottom: 25px;
         }
-        
+
         .social-btn {
             flex: 1;
             padding: 12px;
@@ -172,38 +172,38 @@
             transition: all 0.3s;
             font-weight: 500;
         }
-        
+
         .social-btn:hover {
             background: #f8f9fa;
             transform: translateY(-2px);
         }
-        
+
         .social-btn i {
             margin-right: 10px;
             font-size: 1.2rem;
         }
-        
+
         .social-btn.google {
             color: #DB4437;
         }
-        
+
         .social-btn.facebook {
             color: #4267B2;
         }
-        
+
         .form-check-input:checked {
             background-color: var(--primary);
             border-color: var(--primary);
         }
-        
+
         .password-toggle {
             position: relative;
         }
-        
+
         .password-toggle .form-control {
             padding-right: 45px;
         }
-        
+
         .toggle-password {
             position: absolute;
             right: 15px;
@@ -213,23 +213,23 @@
             color: #6c757d;
             cursor: pointer;
         }
-        
+
         .auth-footer {
             text-align: center;
             margin-top: 25px;
             font-size: 0.9rem;
         }
-        
+
         footer {
             background-color: #2c3e50;
             color: white;
         }
-        
+
         @media (max-width: 768px) {
             .auth-image {
                 display: none;
             }
-            
+
             .auth-form {
                 padding: 30px 20px;
             }
@@ -254,7 +254,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Right Side - Forms -->
                     <div class="col-lg-7">
                         <div class="auth-form">
@@ -263,12 +263,12 @@
                                 <div class="auth-tab active" data-tab="login">Login</div>
                                 <div class="auth-tab" data-tab="signup">Sign Up</div>
                             </div>
-                            
+
                             <!-- Login Form -->
                             <div class="auth-content active" id="login-form">
                                 <h3 class="mb-4">Welcome Back</h3>
                                 <p class="text-muted mb-4">Sign in to your account to continue shopping.</p>
-                                
+
                                 <!-- Social Login -->
                                 <div class="social-login">
                                     <button class="social-btn google">
@@ -278,19 +278,17 @@
                                         <i class="fab fa-facebook-f"></i> Facebook
                                     </button>
                                 </div>
-                                
                                 <div class="divider">
                                     <span>or continue with email</span>
                                 </div>
-                                
                                 <form id="loginForm" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="login">
                                     <div class="mb-3">
-                                        <label for="loginEmail" class="form-label">Email Address</label>
+                                        <label for="email" class="form-label">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="loginEmail" placeholder="name@example.com" >
                                     </div>
-                                    
+
                                     <div class="mb-3 password-toggle">
                                         <label for="loginPassword" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password" >
@@ -298,7 +296,7 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
-                                    
+
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="rememberMe">
@@ -308,20 +306,20 @@
                                         </div>
                                         <a href="#" class="text-primary">Forgot password?</a>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-primary mb-3 btnSign">Sign In</button>
                                 </form>
-                                
+
                                 <div class="auth-footer">
                                     <p>Don't have an account? <a href="#" class="text-primary switch-tab" data-tab="signup">Sign up here</a></p>
                                 </div>
                             </div>
-                            
+
                             <!-- Signup Form -->
                             <div class="auth-content" id="signup-form">
                                 <h3 class="mb-4">Create Account</h3>
                                 <p class="text-muted mb-4">Join TechStore today and enjoy exclusive benefits.</p>
-                                
+
                                 <!-- Social Signup -->
                                 <div class="social-login">
                                     <button class="social-btn google">
@@ -331,7 +329,7 @@
                                         <i class="fab fa-facebook-f"></i> Facebook
                                     </button>
                                 </div>
-                                
+
                                 <div class="divider">
                                     <span>or sign up with email</span>
                                 </div>
@@ -348,7 +346,7 @@
                                         </div>
                                     {% endif %}
 
-                             
+
                                 <form id="signupForm" method="POST" >
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="register">
@@ -356,7 +354,7 @@
                                         <label for="signupEmail" class="form-label">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="signupEmail" placeholder="name@example.com" required>
                                     </div>
-                                    
+
                                     <div class="mb-3 password-toggle">
                                         <label for="password1" class="form-label">Password</label>
                                         <input type="password" name="password1" class="form-control" id="signupPassword" placeholder="Create a strong password" required>
@@ -380,9 +378,10 @@
                                         </div>
                                     </div>
                                     
+
                                     <button type="submit" class="btn btn-primary mb-3">Create Account</button>
                                 </form>
-                                
+
                                 <div class="auth-footer">
                                     <p>Already have an account? <a href="#" class="text-primary switch-tab" data-tab="login">Sign in here</a></p>
                                 </div>
@@ -397,23 +396,23 @@
     <!-- Footer -->
               {% include "layout/footer.html" %}
 
-  
+
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-   
+
     <script>
-    console.log("btnSign") 
+    console.log("btnSign")
         // Tab switching functionality
         document.querySelectorAll('.auth-tab, .switch-tab').forEach(tab => {
              tab.addEventListener('click', function() {
                 const targetTab = this.getAttribute('data-tab');
-                
+
                 // Update active tab
                 document.querySelectorAll('.auth-tab').forEach(t => {
                     t.classList.remove('active');
                 });
                 document.querySelector(`.auth-tab[data-tab="${targetTab}"]`).classList.add('active');
-                
+
                 // Update active form
                 document.querySelectorAll('.auth-content').forEach(content => {
                     content.classList.remove('active');
@@ -421,7 +420,7 @@
                 document.getElementById(`${targetTab}-form`).classList.add('active');
             });
         });
-        
+
 
     </script> -->
 </body>

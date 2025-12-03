@@ -15,7 +15,7 @@ from rest_framework.authtoken.models import Token
 
 class RegisterView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = "login.html"
+    template_name = "registration/login.html"
     def get(self, request):
         return Response({})
     def post(self, request):
@@ -34,6 +34,7 @@ class RegisterView(APIView):
                 email = request.data.get("email")
                 password = request.data.get("password")
                 if not email and not password:
+                    print(request.data)
                     return Response(
                         {"error": "username and password required"},
                         status=status.HTTP_400_BAD_REQUEST
@@ -45,6 +46,7 @@ class RegisterView(APIView):
                         status=status.HTTP_401_UNAUTHORIZED
                     )
                 token, created = Token.objects.get_or_create(user=user)
+                print(request.data)
                 return Response({
                     "message": "Login successful",
                     "token": token.key,

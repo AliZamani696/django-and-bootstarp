@@ -3,24 +3,25 @@ from Store.models import Product,Category
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
-from Store.serializer import ProductSerializer, CategorySerializer
+from rest_framework.renderers import TemplateHTMLRenderer
+from Store.serializer import ProductSerializer
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny
+from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-
-class Home(APIView):
+class Home(LoginRequiredMixin,APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = "index.html"
     def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
+        Paginator = 2
         return Response({
             "products": products,
             "products_json": serializer.data
         })
-# views/error_views.py
-from rest_framework.permissions import AllowAny
+
 
 class NotFoundView(APIView):
     permission_classes = [AllowAny]
@@ -48,3 +49,4 @@ class NotFoundView(APIView):
 
     def delete(self, request, *args, **kwargs):
         return self.get(request, *args, **kwargs)
+
