@@ -6,7 +6,8 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 
 
 #TODO:
@@ -33,26 +34,9 @@ class RegisterView(APIView):
         elif action == "login":
                 email = request.data.get("email")
                 password = request.data.get("password")
-                if not email and not password:
-                    print(request.data)
-                    return Response(
-                        {"error": "username and password required"},
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                user = authenticate(email=email,password=password)
-                if user is None:
-                    return Response(
-                        {"error": "Invalid credentials"},
-                        status=status.HTTP_401_UNAUTHORIZED
-                    )
-                token, created = Token.objects.get_or_create(user=user)
-                print(request.data)
-                return Response({
-                    "message": "Login successful",
-                    "token": token.key,
-                    "user": {
-                    # "id": user.id,
-                    "email": user.email.split("@")[0]
-                    }}
-
-                )
+                user = authenticate(request, email=email, password=password)
+                if  user is None:
+                    return Response({"error": "Invalid"}, status=400)
+                if user:
+                    login(request, user)
+                    return redirect("/home/")
